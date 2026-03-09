@@ -272,7 +272,7 @@ export default function Home() {
 
           <motion.div
             style={{ y: heroY, opacity: heroOpacity }}
-            className="relative z-10 max-w-7xl mx-auto px-6 py-24 w-full grid lg:grid-cols-2 gap-12 items-center"
+            className="relative z-10 max-w-7xl mx-auto px-6 py-16 lg:py-24 w-full grid lg:grid-cols-2 gap-12 items-center"
           >
             {/* Left: Text content */}
             <motion.div
@@ -292,7 +292,7 @@ export default function Home() {
               <motion.h2
                 variants={fadeUp}
                 custom={0.05}
-                className="text-4xl lg:text-5xl font-bold leading-[1.3] text-[#1a3a2a]"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.3] text-[#1a3a2a]"
               >
                 تساقط الشعر له{" "}
                 <span className="relative inline-block">
@@ -342,14 +342,14 @@ export default function Home() {
                 </p>
               </motion.div>
 
-              <motion.div variants={fadeUp} custom={0.15} className="flex flex-wrap gap-4 pt-2">
+              <motion.div variants={fadeUp} custom={0.15} className="flex flex-col sm:flex-row flex-wrap gap-4 pt-2">
                 <motion.a
                   href="https://wa.me/966503377702"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="bg-[#1a3a2a] text-[#c9a84c] px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-[#1a3a2a]/20 border border-[#c9a84c]/30 flex items-center justify-center text-center"
+                  className="w-full sm:w-auto bg-[#1a3a2a] text-[#c9a84c] px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-[#1a3a2a]/20 border border-[#c9a84c]/30 flex items-center justify-center text-center"
                 >
                   احجزي موعدك الآن
                 </motion.a>
@@ -359,7 +359,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="border border-[#1a3a2a]/20 px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#1a3a2a]/5 transition-colors flex items-center justify-center gap-3 text-center"
+                  className="w-full sm:w-auto border border-[#1a3a2a]/20 px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#1a3a2a]/5 transition-colors flex items-center justify-center gap-3 text-center"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg>
                   تواصل معنا عبر واتساب
@@ -426,7 +426,7 @@ export default function Home() {
         </section>
 
         {/* ── Features Section ── */}
-        <section className="bg-[#1a3a2a] py-24 text-white overflow-hidden relative">
+        <section className="bg-[#1a3a2a] py-16 md:py-24 text-white overflow-hidden relative">
           {/* Background shimmer */}
           <motion.div
             className="absolute inset-0 opacity-10"
@@ -448,7 +448,7 @@ export default function Home() {
               <motion.h3 variants={fadeUp} className="text-[#c9a84c] font-bold mb-4 tracking-widest uppercase text-sm">
                 لماذا عيادات د. مها دحلان؟
               </motion.h3>
-              <motion.p variants={fadeUp} custom={0.05} className="text-3xl lg:text-4xl font-bold">
+              <motion.p variants={fadeUp} custom={0.05} className="text-2xl md:text-3xl lg:text-4xl font-bold">
                 معايير ملكية في الرعاية الصحية
               </motion.p>
             </motion.div>
@@ -519,7 +519,7 @@ export default function Home() {
               <motion.h3 variants={fadeUp} className="text-[#c9a84c] font-bold mb-4 uppercase text-sm tracking-widest">
                 مكتبة النتائج
               </motion.h3>
-              <motion.p variants={fadeUp} custom={0.05} className="text-3xl lg:text-4xl font-bold text-white mb-6">
+              <motion.p variants={fadeUp} custom={0.05} className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6">
                 تحوّلات حقيقية تعيد الثقة
               </motion.p>
               <motion.div variants={fadeUp} custom={0.1} className="w-20 h-1 bg-[#c9a84c]/30 mx-auto rounded-full" />
@@ -557,7 +557,7 @@ export default function Home() {
               <motion.h3 variants={fadeUp} className="text-[#c9a84c] font-bold mb-4 uppercase text-sm tracking-widest">
                 أطباؤنا
               </motion.h3>
-              <motion.p variants={fadeUp} custom={0.05} className="text-3xl lg:text-4xl font-bold text-[#1a3a2a] mb-6 leading-relaxed">
+              <motion.p variants={fadeUp} custom={0.05} className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1a3a2a] mb-6 leading-relaxed">
                 نخبة من أطباء الجلدية والتجميل والليزر في جدة
               </motion.p>
               <motion.p variants={fadeUp} custom={0.1} className="text-slate-600">
@@ -570,7 +570,7 @@ export default function Home() {
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
               variants={staggerContainer}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
             >
               {[
                 {
@@ -684,7 +684,7 @@ export default function Home() {
               >
                 <motion.div variants={fadeUp} className="space-y-4">
                   <h3 className="text-[#c9a84c] font-bold">حلولنا العلاجية</h3>
-                  <h2 className="text-4xl font-bold text-[#1a3a2a] leading-tight">
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#1a3a2a] leading-tight">
                     علاجات متخصصة لكل حالات تساقط الشعر
                   </h2>
                 </motion.div>
@@ -733,7 +733,7 @@ export default function Home() {
                   variants={fadeUp}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="bg-[#c9a84c] text-[#1a3a2a] px-8 py-3 rounded-xl font-bold inline-flex items-center justify-center gap-3 shadow-lg shadow-[#c9a84c]/20 w-fit transition-colors"
+                  className="bg-[#c9a84c] text-[#1a3a2a] px-8 py-3 rounded-xl font-bold inline-flex items-center justify-center gap-3 shadow-lg shadow-[#c9a84c]/20 w-full sm:w-fit transition-colors"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg>
                   تواصل معنا
@@ -756,7 +756,7 @@ export default function Home() {
               <motion.h3 variants={fadeUp} className="text-[#c9a84c] font-bold mb-4 uppercase text-sm tracking-widest">
                 قصص نجاح حقيقية
               </motion.h3>
-              <motion.p variants={fadeUp} custom={0.05} className="text-3xl font-bold text-[#1a3a2a]">
+              <motion.p variants={fadeUp} custom={0.05} className="text-2xl md:text-3xl font-bold text-[#1a3a2a]">
                 أكثر من 5000 مراجع استعادوا ثقتهم بأنفسهم
               </motion.p>
             </motion.div>
@@ -823,7 +823,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-[#1a3a2a] rounded-[3rem] p-12 lg:p-20 text-center relative overflow-hidden"
+              className="bg-[#1a3a2a] rounded-[3rem] p-8 md:p-12 lg:p-20 text-center relative overflow-hidden"
             >
               {/* CTA animated orb */}
               <motion.div
@@ -843,7 +843,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
-                  className="text-4xl lg:text-5xl font-bold text-white leading-tight"
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
                 >
                   جاهز لاستعادة مظهرك الطبيعي؟
                 </motion.h2>
@@ -869,7 +869,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, backgroundColor: "#fff" }}
                     whileTap={{ scale: 0.97 }}
-                    className="bg-[#c9a84c] text-[#1a3a2a] px-10 py-4 rounded-full font-bold text-xl inline-flex items-center gap-3 transition-colors"
+                    className="bg-[#c9a84c] text-[#1a3a2a] px-10 py-4 rounded-full font-bold text-xl inline-flex items-center justify-center w-full sm:w-auto gap-3 transition-colors"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg>
                     احجز موعدك الآن
