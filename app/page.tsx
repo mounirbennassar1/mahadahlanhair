@@ -3,6 +3,27 @@
 import { motion, useScroll, useTransform, AnimatePresence, Variants } from "framer-motion";
 import React, { useState, useRef, useEffect } from "react";
 
+/* ─────────────────── Google Ads conversion helper ─────────────────── */
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
+
+function gtagReportConversion(url?: string) {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "conversion", {
+      send_to: "AW-10989762778/BiufCP7R5IUcENrxqfgo",
+      event_callback: () => {
+        if (url) window.location.href = url;
+      },
+    });
+  } else if (url) {
+    window.location.href = url;
+  }
+}
+
 /* ─────────────────── animation variants ─────────────────── */
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -274,6 +295,7 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <motion.a
               href="https://wa.me/966503377702"
+              onClick={() => gtagReportConversion()}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
@@ -319,6 +341,7 @@ export default function Home() {
                 </div>
                 <a
                   href="https://wa.me/966503377702"
+                  onClick={() => gtagReportConversion()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#c9a84c] text-[#1a3a2a] font-bold px-6 py-3 rounded-full text-sm mt-2 text-center"
@@ -417,6 +440,7 @@ export default function Home() {
                   href="https://wa.me/966503377702"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => gtagReportConversion()}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
                   className="w-full sm:w-auto bg-[#1a3a2a] text-[#c9a84c] px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-[#1a3a2a]/20 border border-[#c9a84c]/30 flex items-center justify-center text-center"
@@ -427,6 +451,7 @@ export default function Home() {
                   href="https://wa.me/966503377702"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => gtagReportConversion()}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
                   className="w-full sm:w-auto border border-[#1a3a2a]/20 px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#1a3a2a]/5 transition-colors flex items-center justify-center gap-3 text-center"
@@ -808,6 +833,7 @@ export default function Home() {
                   href="https://wa.me/966503377702"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => gtagReportConversion()}
                   variants={fadeUp}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
@@ -961,6 +987,7 @@ export default function Home() {
                     href="https://wa.me/966503377702"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => gtagReportConversion()}
                     whileHover={{ scale: 1.05, backgroundColor: "#fff" }}
                     whileTap={{ scale: 0.97 }}
                     className="bg-[#c9a84c] text-[#1a3a2a] px-10 py-4 rounded-full font-bold text-xl inline-flex items-center justify-center w-full sm:w-auto gap-3 transition-colors"
