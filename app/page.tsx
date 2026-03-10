@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, AnimatePresence, Variants } from "framer-motion";
-import { useRef, useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 /* ─────────────────── animation variants ─────────────────── */
 const fadeUp: Variants = {
@@ -27,6 +27,29 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.12, delayChildren: 0.2 },
   },
 };
+
+const SOCIAL_LINKS = [
+  {
+    name: "انستغرام",
+    url: "https://www.instagram.com/md_clinics_?igsh=MXNjbGt5bXEzNjgwcg==",
+    svg: <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+  },
+  {
+    name: "سناب شات",
+    url: "https://snapchat.com/t/RI87LsZs",
+    svg: <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.12 21.05c-.32 0-3.37-.21-4.71-1.07-.46-.3-1.09-.7-1.39-1.28-.42-.8 1.44-1.12 2.8-1.4 1.25-.26 1.34-.69 1.13-1.41-.33-1.1-1.41-1.42-2.31-1.68-.82-.25-1.74-.53-2.17-1.16-.36-.53-.42-1.24-.13-1.92.27-.63.92-1.03 1.83-1.11.45-.04 1.1-.03 1.88.04 1-.5 1.54-1.29 1.94-2.02.58-1 .92-2.17 1.18-3.41.2-.95.45-2.09.84-2.61.53-.7 1.27-1.02 2.22-1.02h.16c.94 0 1.68.32 2.21 1.02.39.52.63 1.66.83 2.61.26 1.24.6 2.41 1.18 3.41.4.73.94 1.52 1.94 2.02.78-.07 1.43-.08 1.88-.04.91.08 1.56.48 1.83 1.11.29.68.23 1.39-.13 1.92-.43.63-1.35.91-2.17 1.16-.9.26-1.98.58-2.31 1.68-.21.72-.12 1.15 1.13 1.41 1.36.28 3.22.61 2.8 1.4-.3.58-.93.98-1.39 1.28-1.34.86-4.39 1.07-4.72 1.07z" /></svg>
+  },
+  {
+    name: "تيك توك",
+    url: "https://www.tiktok.com/@md.clinics?_t=ZS-8wlSeJliaLx&_r=1",
+    svg: <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+  },
+  {
+    name: "إكس",
+    url: "https://x.com/md_clinics_?s=21&t=FpQH2SlyziT0Q1AQPVRqfQ",
+    svg: <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg>
+  },
+];
 
 /* ─────────────────── floating orb component ─────────────────── */
 function FloatingOrb({
@@ -171,6 +194,43 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
   );
 }
 
+/* ─────────────────── review card component ─────────────────── */
+function ReviewCard({ review }: { review: { name: string; text: string; rating: number; date: string } }) {
+  const GoogleIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48" className="shrink-0 opacity-50">
+      <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
+      <path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
+      <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z" />
+      <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" />
+    </svg>
+  );
+  return (
+    <div className="bg-white p-5 rounded-3xl shadow-sm border border-[#1a3a2a]/5 hover:shadow-lg transition-shadow flex flex-col">
+      <div className="flex gap-1 text-[#c9a84c] mb-3">
+        {[...Array(review.rating)].map((_, i) => (
+          <span key={i} className="material-symbols-outlined fill-1 text-sm">star</span>
+        ))}
+        {[...Array(5 - review.rating)].map((_, i) => (
+          <span key={i} className="material-symbols-outlined text-sm text-slate-200">star</span>
+        ))}
+      </div>
+      <p className="text-slate-600 mb-4 leading-relaxed text-sm flex-1">&ldquo;{review.text}&rdquo;</p>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="size-9 rounded-full bg-gradient-to-br from-[#c9a84c]/30 to-[#1a3a2a]/20 flex items-center justify-center text-[#1a3a2a] font-bold text-sm shrink-0">
+            {review.name.charAt(0)}
+          </div>
+          <div>
+            <p className="font-bold text-sm text-[#1a3a2a] leading-none mb-0.5">{review.name}</p>
+            <span className="text-xs text-slate-400">{review.date}</span>
+          </div>
+        </div>
+        <GoogleIcon />
+      </div>
+    </div>
+  );
+}
+
 /* ─────────────────── main page ─────────────────── */
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
@@ -195,16 +255,18 @@ export default function Home() {
             <img src="/logo.avif" alt="مها دهلان" className="h-26 w-auto object-contain" />
           </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-10">
-            {["الرئيسية", "خدماتنا", "نتائجنا", "من نحن"].map((item, i) => (
+          <nav className="hidden md:flex items-center gap-6">
+            {SOCIAL_LINKS.map((social) => (
               <motion.a
-                key={item}
-                href={i === 0 ? "#" : `#${["", "services", "results", "about"][i]}`}
-                className="text-sm font-medium hover:text-[#c9a84c] transition-colors"
-                whileHover={{ scale: 1.05 }}
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={social.name}
+                className="text-slate-500 hover:text-[#c9a84c] transition-colors"
+                whileHover={{ scale: 1.1 }}
               >
-                {item}
+                {social.svg}
               </motion.a>
             ))}
           </nav>
@@ -241,12 +303,20 @@ export default function Home() {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden bg-[#f9f7f2] border-t border-[#1a3a2a]/10"
             >
-              <div className="flex flex-col px-6 py-4 gap-4">
-                {["الرئيسية", "خدماتنا", "نتائجنا", "من نحن"].map((item) => (
-                  <a key={item} href="#" className="text-sm font-medium hover:text-[#c9a84c] transition-colors py-2">
-                    {item}
-                  </a>
-                ))}
+              <div className="flex flex-col px-6 py-6 gap-6">
+                <div className="flex items-center justify-center gap-8 py-2">
+                  {SOCIAL_LINKS.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#1a3a2a] hover:text-[#c9a84c] transition-colors"
+                    >
+                      {social.svg}
+                    </a>
+                  ))}
+                </div>
                 <a
                   href="https://wa.me/966503377702"
                   target="_blank"
@@ -286,7 +356,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/30 text-[#c9a84c] text-sm font-medium"
               >
                 <span className="material-symbols-outlined text-base">verified</span>
-                أحدث تقنيات زراعة الشعر العالمية في الرياض
+                أحدث تقنيات زراعة الشعر العالمية في جدة
               </motion.div>
 
               <motion.h2
@@ -463,18 +533,18 @@ export default function Home() {
               {[
                 {
                   icon: "biotech",
-                  title: "تقنيات السفير المتطورة",
-                  desc: "نستخدم شفرات حجر السفير لفتح القنوات، مما يضمن دقة متناهية وفترة تعافي قياسية ونتائج طبيعية 100%.",
+                  title: "تقنيات متقدمة لتحفيز نمو الشعر",
+                  desc: "نوفر مجموعة من أحدث العلاجات الطبية التي تساعد على تنشيط البصيلات الضعيفة وتحفيز نمو الشعر بشكل طبيعي.",
                 },
                 {
-                  icon: "workspace_premium",
-                  title: "بيئة استشفاء فاخرة",
-                  desc: "نولي خصوصيتك وراحتك أولوية قصوى في أجنحة طبية مجهزة بأعلى مستويات الرفاهية العالمية.",
+                  icon: "medication",
+                  title: "حلول طبية متنوعة تناسب كل حالة",
+                  desc: "نختار العلاج المناسب بناءً على تقييم حالة الشعر ونوع التساقط لضمان أفضل النتائج الممكنة.",
                 },
                 {
-                  icon: "stethoscope",
-                  title: "خبرات عالمية",
-                  desc: "فريقنا يضم نخبة من الجراحين الحاصلين على البورد الأوروبي والأمريكي في مجال زراعة وجراحة الشعر.",
+                  icon: "assignment_ind",
+                  title: "برامج علاجية مصممة لك",
+                  desc: "كل حالة تساقط شعر تختلف عن الأخرى، لذلك يتم تحديد خطة علاجية مخصصة لتحسين كثافة الشعر وصحة فروة الرأس.",
                 },
               ].map((card) => (
                 <motion.div
@@ -692,16 +762,24 @@ export default function Home() {
                 <div className="space-y-6">
                   {[
                     {
-                      title: "زراعة الشعر بتقنية FUE & Sapphire",
-                      desc: "أحدث الطرق لضمان كثافة عالية دون ترك أي ندوب ظاهرة.",
+                      title: "Regenera Evo لتجديد بصيلات الشعر",
+                      desc: "تقنية طبية متقدمة تساعد على تنشيط الخلايا وتحفيز نمو الشعر.",
                     },
                     {
-                      title: "علاج البلازما الغنية بالصفائح (PRP)",
-                      desc: "تحفيز نمو الشعر الطبيعي وتقوية البصيلات الضعيفة.",
+                      title: "البلازما PRP (الكلاسيك وMagellan) مع ACell",
+                      desc: "تعزز الدورة الدموية في فروة الرأس وتساعد على تقوية البصيلات.",
                     },
                     {
-                      title: "الميزوثيرابي المتقدم",
-                      desc: "حقن مغذيات وفيتامينات مباشرة في فروة الرأس لتغذية الجذور.",
+                      title: "حقن المينوكسيديل والدوتاسترايد وفيتامينات الشعر",
+                      desc: "تغذية مباشرة للبصيلات لتحسين الكثافة وتقليل التساقط.",
+                    },
+                    {
+                      title: "الميزوثيرابي للشعر",
+                      desc: "حقن مغذيات وفيتامينات مركزة لدعم صحة فروة الرأس.",
+                    },
+                    {
+                      title: "Exosome & PDRN Therapy",
+                      desc: "علاج متطور يساعد على تحفيز تجدد الخلايا ودعم نمو الشعر.",
                     },
                   ].map((item, i) => (
                     <motion.div
@@ -743,76 +821,92 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── Testimonials ── */}
-        <section id="results" className="py-24 bg-[#c9a84c]/5">
+        {/* ── Google Reviews ── */}
+        <section id="results" className="py-16 md:py-24 bg-[#c9a84c]/5 overflow-hidden">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
               variants={staggerContainer}
-              className="text-center max-w-3xl mx-auto mb-16"
+              className="text-center max-w-3xl mx-auto mb-12"
             >
               <motion.h3 variants={fadeUp} className="text-[#c9a84c] font-bold mb-4 uppercase text-sm tracking-widest">
-                قصص نجاح حقيقية
+                آراء عملائنا على Google
               </motion.h3>
-              <motion.p variants={fadeUp} custom={0.05} className="text-2xl md:text-3xl font-bold text-[#1a3a2a]">
-                أكثر من 5000 مراجع استعادوا ثقتهم بأنفسهم
+              <motion.p variants={fadeUp} custom={0.05} className="text-2xl md:text-3xl font-bold text-[#1a3a2a] mb-6">
+                أكثر من 1,158 تقييم على Google
               </motion.p>
-            </motion.div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={staggerContainer}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {[
-                {
-                  text: '"تجربة كانت مذهلة بكل المقاييس. الاحترافية في التعامل والنتيجة فاقت توقعاتي. بعد 6 أشهر من الزراعة أصبح شعري كثيفاً وطبيعياً جداً."',
-                  name: "أحمد م.",
-                  sub: "زراعة شعر - 2023",
-                  img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDflDbjeQLlMbuOeEsQiyU-XH9zMUexWbNroXzqLQjyu7BKI6tXIjmQYvS-HPgrQ0_wuylnWN9m-0aDA6-3wH_0N6mc2UfV0NGtOkHmtVCLacKJ9kTBb59mmtQ4I8-3o9e-3RAlb7nW0pyZC4A4NdDUte0wsEOOlbD2dBl01HGoET_BIgZQKDpnDs04wHUJ4jbbidmi_NZRNeqkdsn_rFeY-m6kCgIg40a_rapx64sTjPEsujGkPcXFFkrTKfyOuYTmuCg7L38HL3Yq",
-                },
-                {
-                  text: '"كنت أعاني من تساقط شديد بعد الولادة، وبفضل جلسات البلازما المكثفة في عيادة د. مها، توقف التساقط وبدأ شعري ينمو من جديد."',
-                  name: "سارة ع.",
-                  sub: "علاج البلازما - 2023",
-                  img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBvsw7gxMOloUAQuxrS39TpJ0qC8L0-FZbOOgkX6FUyC3XUqYlwFuPMjZ364sWaojGhEewBRlusoE7Duc14LLGwBYGiDw39C2AVfrcNwxXgmyoRCORkt6IGgmRXflPsCFIWv5hHCOS42dJBn6thYG225JEX8VJYGRS0Zu8FGTOP22RkzvCYr08RYpIvmaow6s5q7vdWOQIxcUnGoGXbK9bmDC3nwc2Kpz9Bxc8HX6icSW8NIr-9z93Gn333TD8SREQur0DD2vyu2uB4",
-                },
-                {
-                  text: '"نظافة العيادة واستقبال الموظفين والاهتمام بأدق التفاصيل هو ما يميزهم. شكراً للفريق الطبي الرائع على هذه النتيجة."',
-                  name: "فهد س.",
-                  sub: "زراعة شعر - 2022",
-                  img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpps_vnIz3Mv7FJN1eDOe2q62cs48UITEEr2BoukInGC6726Ik5Axz7Q1n0wVvfOPhEH1p3wSufaYELuZFveS16FAQ_XOPRyotBHAUqQobpZ9iXJqCMwooV8yGcbOo43P_cxNy45oHBPEPvU9Tf7UJUpvWE2mIkJPCu3zm6F1gbCqonUOpfggh7Xyjq6NnVVI5kAbQLh78BSjW62QJ5edYTXGjrkQ9Ud0PidfgXHgWi2cqfUBIc7y8untJIs8CCI8kMW_Xk5riVtx5",
-                },
-              ].map((t) => (
-                <motion.div
-                  key={t.name}
-                  variants={fadeUp}
-                  whileHover={{ y: -6 }}
-                  className="bg-white p-8 rounded-3xl shadow-sm border border-[#1a3a2a]/5 transition-shadow hover:shadow-lg"
-                >
-                  <div className="flex gap-1 text-[#c9a84c] mb-4">
+              {/* Google Rating Badge */}
+              <motion.div variants={fadeUp} custom={0.1} className="inline-flex items-center gap-3 bg-white rounded-full px-6 py-3 shadow-md border border-[#1a3a2a]/5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 48 48">
+                  <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
+                  <path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
+                  <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z" />
+                  <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" />
+                </svg>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-[#1a3a2a]">4.8</span>
+                  <div className="flex gap-0.5">
                     {[...Array(5)].map((_, i) => (
-                      <span key={i} className="material-symbols-outlined fill-1 text-lg">star</span>
+                      <span key={i} className="material-symbols-outlined fill-1 text-[#c9a84c] text-base">star</span>
                     ))}
                   </div>
-                  <p className="italic text-slate-600 mb-6 leading-relaxed">{t.text}</p>
-                  <div className="flex items-center gap-4">
-                    <div className="size-12 rounded-full bg-slate-200 overflow-hidden shrink-0">
-                      <img alt={t.name} src={t.img} className="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                      <h6 className="font-bold">{t.name}</h6>
-                      <span className="text-xs text-slate-400">{t.sub}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                </div>
+                <span className="text-sm text-slate-500">(1,158 تقييم)</span>
+              </motion.div>
             </motion.div>
+
+            {/* Reviews Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              {[
+                { name: "Sara Jean", text: "من أرقى وأنظم العيادات في جدة. الأخصائية نضال محترفة جداً وطريقتها في الفيشل فريدة ومريحة.", rating: 5, date: "قبل يوم" },
+                { name: "Dhahby Rahma", text: "شكر خاص للأخصائية نضال؛ صبورة وتفهم شغلها وتأديه بكل حب.", rating: 5, date: "قبل يوم" },
+                { name: "Fatima Bushra", text: "أنصح بشدة بالدكتورة لجين الجرماني لمصداقيتها ومهارتها ولمستها الإبداعية في العلاج.", rating: 5, date: "قبل يومين" },
+                { name: "Rafika Rafika", text: "سعيدة جداً بنتيجة فيلر الشفايف وحقن الإكسوسوم مع الدكتورة إيناس. يدها خفيفة جداً.", rating: 5, date: "قبل أسبوع" },
+                { name: "Afaf Alsubhi", text: "أشكر العيادة على احترافيتها ونتائجها الممتازة. تجربة رائعة من البداية للنهاية.", rating: 5, date: "قبل أسبوع" },
+                { name: "Ali Al-Masoudi", text: "شكراً للدكتورة مها دحلان على حل مشكلة بنتي الجلدية بسرعة. أنصح بها بشدة.", rating: 5, date: "قبل شهر" },
+              ].map((review, idx) => (
+                <ReviewCard key={idx} review={review} />
+              ))}
+            </div>
+
+            {/* See more button */}
+            <div className="flex justify-center mt-10">
+              <motion.a
+                href="https://share.google/JV3pKhHlx8xUPrHXI"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-3 bg-white border border-[#1a3a2a]/10 text-[#1a3a2a] px-8 py-3.5 rounded-full font-bold shadow-md hover:shadow-lg transition-all"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48">
+                  <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
+                  <path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
+                  <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z" />
+                  <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" />
+                </svg>
+                شاهد جميع التقييمات على Google
+                <span className="material-symbols-outlined text-base">open_in_new</span>
+              </motion.a>
+            </div>
           </div>
+        </section>
+
+        {/* ── Google Map Section ── */}
+        <section className="w-full">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3710.7996307159806!2d39.167282300000004!3d21.5546887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d038d28772bf%3A0xc4d8dc21894c2225!2zTUQgQ2xpbmljcyAo2YXYrNmF2Lkg2LnZitin2K_Yp9iqINivLiDZhdmH2Kcg2K_YrdmE2KfZhiDYp9mE2LfYqNmKKQ!5e0!3m2!1sen!2sma!4v1773113524509!5m2!1sen!2sma"
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="MD Clinics Location"
+          />
         </section>
 
         {/* ── CTA Section ── */}
@@ -886,28 +980,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h4 className="text-[#1a3a2a] font-bold text-lg mb-8">تواصل معنا عبر منصاتنا</h4>
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
-            {[
-              {
-                name: "انستغرام",
-                url: "https://www.instagram.com/md_clinics_?igsh=MXNjbGt5bXEzNjgwcg==",
-                svg: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-              },
-              {
-                name: "سناب شات",
-                url: "https://snapchat.com/t/RI87LsZs",
-                svg: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.12 21.05c-.32 0-3.37-.21-4.71-1.07-.46-.3-1.09-.7-1.39-1.28-.42-.8 1.44-1.12 2.8-1.4 1.25-.26 1.34-.69 1.13-1.41-.33-1.1-1.41-1.42-2.31-1.68-.82-.25-1.74-.53-2.17-1.16-.36-.53-.42-1.24-.13-1.92.27-.63.92-1.03 1.83-1.11.45-.04 1.1-.03 1.88.04 1-.5 1.54-1.29 1.94-2.02.58-1 .92-2.17 1.18-3.41.2-.95.45-2.09.84-2.61.53-.7 1.27-1.02 2.22-1.02h.16c.94 0 1.68.32 2.21 1.02.39.52.63 1.66.83 2.61.26 1.24.6 2.41 1.18 3.41.4.73.94 1.52 1.94 2.02.78-.07 1.43-.08 1.88-.04.91.08 1.56.48 1.83 1.11.29.68.23 1.39-.13 1.92-.43.63-1.35.91-2.17 1.16-.9.26-1.98.58-2.31 1.68-.21.72-.12 1.15 1.13 1.41 1.36.28 3.22.61 2.8 1.4-.3.58-.93.98-1.39 1.28-1.34.86-4.39 1.07-4.72 1.07z" /></svg>
-              },
-              {
-                name: "تيك توك",
-                url: "https://www.tiktok.com/@md.clinics?_t=ZS-8wlSeJliaLx&_r=1",
-                svg: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
-              },
-              {
-                name: "إكس",
-                url: "https://x.com/md_clinics_?s=21&t=FpQH2SlyziT0Q1AQPVRqfQ",
-                svg: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg>
-              },
-            ].map((social) => (
+            {SOCIAL_LINKS.map((social) => (
               <motion.a
                 key={social.name}
                 href={social.url}
@@ -955,9 +1028,14 @@ export default function Home() {
             <div>
               <h5 className="font-bold mb-6 text-[#1a3a2a]">روابط سريعة</h5>
               <ul className="space-y-4 text-sm text-slate-500">
-                {["عن العيادة", "الخدمات العلاجية", "قبل وبعد", "المدونة الطبية"].map((link) => (
+                {["خدماتنا", "نتائجنا", "من نحن"].map((link) => (
                   <li key={link}>
-                    <a href="#" className="hover:text-[#c9a84c] transition-colors">{link}</a>
+                    <a
+                      href={`#${link === "خدماتنا" ? "services" : link === "نتائجنا" ? "results" : "about"}`}
+                      className="hover:text-[#c9a84c] transition-colors"
+                    >
+                      {link}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -977,8 +1055,8 @@ export default function Home() {
                 <li className="flex gap-2 items-start">
                   <span className="material-symbols-outlined text-[#c9a84c] text-base shrink-0 mt-0.5">call</span>
                   <div className="flex flex-col gap-1">
-                    <a href="tel:966920007515" className="hover:text-[#c9a84c] transition-colors" dir="ltr text-right inline-block">+966 920007515</a>
-                    <a href="tel:966503377702" className="hover:text-[#c9a84c] transition-colors" dir="ltr text-right inline-block">+966 503377702</a>
+                    <a href="tel:966920007515" className="hover:text-[#c9a84c] transition-colors" dir="ltr">+966 920007515</a>
+                    <a href="tel:966503377702" className="hover:text-[#c9a84c] transition-colors" dir="ltr">+966 503377702</a>
                   </div>
                 </li>
               </ul>
@@ -1017,3 +1095,4 @@ export default function Home() {
     </div>
   );
 }
+
