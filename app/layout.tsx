@@ -3,9 +3,19 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "رويال هير | عيادة استعادة الشعر",
+  title: "عيادة مها دهلان لمعالجة تساقط الشعر",
   description:
-    "عيادة رويال هير - الرائدة في المملكة لتقديم حلول طبية متكاملة لعلاج تساقط الشعر وزراعته بأحدث التقنيات",
+    "عيادة د. مها دهلان - حلول طبية متكاملة لعلاج تساقط الشعر وزراعته بأحدث التقنيات في جدة",
+  icons: {
+    icon: "/logo.avif",
+    apple: "/logo.avif",
+  },
+  openGraph: {
+    title: "عيادة مها دهلان لمعالجة تساقط الشعر",
+    description:
+      "عيادة د. مها دهلان - حلول طبية متكاملة لعلاج تساقط الشعر وزراعته بأحدث التقنيات في جدة",
+    images: ["/logo.avif"],
+  },
 };
 
 export default function RootLayout({
