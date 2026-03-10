@@ -90,24 +90,25 @@ function FloatingOrb({
 }) {
   return (
     <motion.div
-      className="absolute rounded-full blur-3xl pointer-events-none"
+      className="absolute rounded-full blur-3xl pointer-events-none will-change-transform"
       style={{
         width: size,
         height: size,
         background: color,
         left: x,
         top: y,
+        transform: "translateZ(0)",
       }}
       animate={{
-        x: [0, 30, -20, 10, 0],
-        y: [0, -25, 15, -10, 0],
-        scale: [1, 1.1, 0.95, 1.05, 1],
+        scale: [1, 1.2, 1],
+        x: ["0%", "10%", "-5%", "0%"],
+        y: ["0%", "-8%", "5%", "0%"],
       }}
       transition={{
         duration,
-        delay,
         repeat: Infinity,
         ease: "easeInOut",
+        delay,
       }}
     />
   );
@@ -255,9 +256,18 @@ function ReviewCard({ review }: { review: { name: string; text: string; rating: 
 /* ─────────────────── main page ─────────────────── */
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", isMobile ? "0%" : "30%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, isMobile ? 1 : 0]);
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -364,8 +374,8 @@ export default function Home() {
           <AnimatedGrid />
 
           <motion.div
-            style={{ y: heroY, opacity: heroOpacity }}
-            className="relative z-10 max-w-7xl mx-auto px-6 py-16 lg:py-24 w-full grid lg:grid-cols-2 gap-12 items-center"
+            style={{ y: heroY, opacity: heroOpacity, transform: "translateZ(0)" }}
+            className="relative z-10 max-w-7xl mx-auto px-6 py-16 lg:py-24 w-full grid lg:grid-cols-2 gap-12 items-center will-change-transform"
           >
             {/* Left: Text content */}
             <motion.div
