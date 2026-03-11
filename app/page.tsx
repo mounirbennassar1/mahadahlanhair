@@ -389,7 +389,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/30 text-[#c9a84c] text-sm font-medium"
               >
                 <span className="material-symbols-outlined text-base">verified</span>
-                أحدث تقنيات علاج تساقط الشعر مو زراعة الشعر في جدة
+                أحدث تقنيات علاج تساقط الشعر في جدة
               </motion.div>
 
               <motion.h2
