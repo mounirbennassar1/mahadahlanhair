@@ -389,7 +389,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/30 text-[#c9a84c] text-sm font-medium"
               >
                 <span className="material-symbols-outlined text-base">verified</span>
-                أحدث تقنيات زراعة الشعر العالمية في جدة
+                أحدث تقنيات علاج تساقط الشعر مو زراعة الشعر في جدة
               </motion.div>
 
               <motion.h2
@@ -975,7 +975,7 @@ export default function Home() {
                   transition={{ delay: 0.2 }}
                   className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
                 >
-                  جاهز لاستعادة مظهرك الطبيعي؟
+                  جاهزة لعلاج مشاكل شعرك؟
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -984,7 +984,7 @@ export default function Home() {
                   transition={{ delay: 0.3 }}
                   className="text-slate-300 text-lg max-w-2xl mx-auto"
                 >
-                  احصل على استشارة طبية مجانية وتقييم لحالتك مع أحد خبراء زراعة الشعر لدينا اليوم.
+                  ابدئي رحلتك لاستعادة كثافة شعرك وصحة فروة رأسك مع تقييم طبي دقيق وخيارات علاجية متقدمة مصممة خصيصًا لك.
                 </motion.p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
