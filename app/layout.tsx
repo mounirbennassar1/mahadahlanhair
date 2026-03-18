@@ -36,7 +36,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
           rel="stylesheet"
         />
-        {/* Google Ads gtag.js */}
+        {/* Google Ads gtag.js - AW-10989762778 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-10989762778"
           strategy="afterInteractive"
@@ -47,6 +47,19 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-10989762778');
+          `}
+        </Script>
+        {/* Google Ads gtag.js - AW-707324287 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-707324287"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag-2" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-707324287');
           `}
         </Script>
       </head>
