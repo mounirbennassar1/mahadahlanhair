@@ -304,7 +304,7 @@ export default function Home() {
 
           <div className="flex items-center gap-4">
             <motion.a
-              href="https://wa.me/966503377702"
+              href="https://wa.me/966503377702?text=مرحباً%20عندي%20استفسار%20عن%20الخدمات%20والأسعار%20(عروض_جوجل)"
               onClick={() => gtagReportConversion()}
               target="_blank"
               rel="noopener noreferrer"
@@ -350,7 +350,7 @@ export default function Home() {
                   ))}
                 </div>
                 <a
-                  href="https://wa.me/966503377702"
+                  href="https://wa.me/966503377702?text=مرحباً%20عندي%20استفسار%20عن%20الخدمات%20والأسعار%20(عروض_جوجل)"
                   onClick={() => gtagReportConversion()}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -447,7 +447,7 @@ export default function Home() {
 
               <motion.div variants={fadeUp} custom={0.15} className="flex flex-col sm:flex-row flex-wrap gap-4 pt-2">
                 <motion.a
-                  href="https://wa.me/966503377702"
+                  href="https://wa.me/966503377702?text=مرحباً%20عندي%20استفسار%20عن%20الخدمات%20والأسعار%20(عروض_جوجل)"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => gtagReportConversion()}
@@ -458,7 +458,7 @@ export default function Home() {
                   احجزي موعدك الآن
                 </motion.a>
                 <motion.a
-                  href="https://wa.me/966503377702"
+                  href="https://wa.me/966503377702?text=مرحباً%20عندي%20استفسار%20عن%20الخدمات%20والأسعار%20(عروض_جوجل)"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => gtagReportConversion()}
@@ -840,7 +840,7 @@ export default function Home() {
                 </div>
 
                 <motion.a
-                  href="https://wa.me/966503377702"
+                  href="https://wa.me/966503377702?text=مرحباً%20عندي%20استفسار%20عن%20الخدمات%20والأسعار%20(عروض_جوجل)"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => gtagReportConversion()}
@@ -994,7 +994,7 @@ export default function Home() {
                   className="flex justify-center"
                 >
                   <motion.a
-                    href="https://wa.me/966503377702"
+                    href="https://wa.me/966503377702?text=مرحباً%20عندي%20استفسار%20عن%20الخدمات%20والأسعار%20(عروض_جوجل)"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => gtagReportConversion()}
