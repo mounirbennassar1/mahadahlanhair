@@ -342,7 +342,7 @@ export default function BookingPage() {
 
           <motion.div
             style={{ y: heroY, opacity: heroOpacity, transform: "translateZ(0)" }}
-            className="relative z-10 max-w-7xl mx-auto px-6 py-16 lg:py-24 w-full grid lg:grid-cols-2 gap-12 items-start will-change-transform"
+            className="relative z-10 max-w-7xl mx-auto px-6 py-16 lg:py-24 w-full grid lg:grid-cols-2 gap-12 items-center will-change-transform"
           >
             {/* Left: Text content */}
             <motion.div
@@ -412,6 +412,28 @@ export default function BookingPage() {
                 </p>
               </motion.div>
 
+              <motion.div variants={fadeUp} custom={0.15} className="flex flex-col sm:flex-row flex-wrap gap-4 pt-2">
+                <motion.a
+                  href={BOOKING_ANCHOR}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full sm:w-auto bg-[#1a3a2a] text-[#c9a84c] px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-[#1a3a2a]/20 border border-[#c9a84c]/30 flex items-center justify-center gap-3 text-center"
+                >
+                  <span className="material-symbols-outlined">event_available</span>
+                  احجزي موعدك الآن
+                </motion.a>
+                <motion.a
+                  href="tel:+966920007515"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full sm:w-auto border border-[#1a3a2a]/20 px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#1a3a2a]/5 transition-colors flex items-center justify-center gap-3 text-center"
+                  dir="ltr"
+                >
+                  <span className="material-symbols-outlined">call</span>
+                  920007515
+                </motion.a>
+              </motion.div>
+
               {/* Stats row */}
               <motion.div
                 variants={fadeIn}
@@ -428,14 +450,42 @@ export default function BookingPage() {
               </motion.div>
             </motion.div>
 
-            {/* Right: Lead Form */}
+            {/* Right: Image */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative lg:sticky lg:top-28"
+              className="relative"
             >
-              <LeadForm id="booking-form" />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-[-20px] rounded-[3rem] border border-dashed border-[#c9a84c]/20"
+              />
+
+              <div className="relative rounded-[2.5rem] overflow-hidden border-8 border-white shadow-2xl shadow-[#1a3a2a]/15">
+                <img
+                  alt="طبيب متخصص يفحص نمو الشعر"
+                  className="w-full aspect-[4/5] object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkh9QMsRrWJpEnqUqi6k8Nph69GDJy3-BTjU_fNap-GUS0rqK7n4NxcEWaO5oA7I-c4uq5zQ6bEQBhRsnW2Kxqo7AQbmqHmQJ1Snxr2xGk1YFsH6-PzRW44pSy6jmYtWMuAVYqeGVkZ-ikrHKoKeN-m_b-20YZJD_zO8ENS6uH4tCTkVN68XcfIg13zTTCEJnFEglE9xng7piUhtLfQOJCyWW6WpBmaBNAHBpetjQpKUkJ8NPZq9OFE4LNfsSayBOWE2DRvjSD3emC"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a2a]/30 via-transparent to-transparent" />
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8, duration: 0.5, type: "spring", bounce: 0.4 }}
+                className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl border border-[#1a3a2a]/5 flex items-center gap-3"
+              >
+                <div className="size-12 bg-[#c9a84c]/10 rounded-xl flex items-center justify-center">
+                  <span className="material-symbols-outlined text-[#c9a84c] text-2xl">verified_user</span>
+                </div>
+                <div>
+                  <div className="font-bold text-[#1a3a2a] text-sm">استشارة مجانية</div>
+                  <div className="text-xs text-slate-400">مع خبير متخصص</div>
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         </section>
@@ -842,15 +892,15 @@ export default function BookingPage() {
           />
         </section>
 
-        {/* ── CTA Section ── */}
-        <section className="py-24">
-          <div className="max-w-5xl mx-auto px-6">
+        {/* ── Booking Form Section ── */}
+        <section className="py-24 scroll-mt-24" id="booking-form-section">
+          <div className="max-w-7xl mx-auto px-6">
             <motion.div
-              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              initial={{ opacity: 0, y: 60, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-[#1a3a2a] rounded-[3rem] p-8 md:p-12 lg:p-20 text-center relative overflow-hidden"
+              className="bg-[#1a3a2a] rounded-[3rem] p-6 md:p-10 lg:p-16 relative overflow-hidden"
             >
               <motion.div
                 className="absolute top-0 right-0 w-80 h-80 bg-[#c9a84c]/10 rounded-full -mr-20 -mt-20 blur-3xl"
@@ -863,41 +913,64 @@ export default function BookingPage() {
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
               />
 
-              <div className="relative z-10 space-y-8">
-                <motion.h2
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
-                >
-                  جاهزة لعلاج مشاكل شعرك؟
-                </motion.h2>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className="text-slate-300 text-lg max-w-2xl mx-auto"
-                >
-                  ابدئي رحلتك لاستعادة كثافة شعرك وصحة فروة رأسك مع تقييم طبي دقيق وخيارات علاجية متقدمة مصممة خصيصًا لك.
-                </motion.p>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                  className="flex justify-center"
-                >
-                  <motion.a
-                    href={BOOKING_ANCHOR}
-                    whileHover={{ scale: 1.05, backgroundColor: "#fff" }}
-                    whileTap={{ scale: 0.97 }}
-                    className="bg-[#c9a84c] text-[#1a3a2a] px-10 py-4 rounded-full font-bold text-xl inline-flex items-center justify-center w-full sm:w-auto gap-3 transition-colors"
+              <div className="relative z-10 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                <div className="space-y-6 text-center lg:text-right">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c9a84c]/15 border border-[#c9a84c]/30 text-[#c9a84c] text-sm font-medium"
                   >
-                    <span className="material-symbols-outlined">event_available</span>
-                    احجز موعدك الآن
-                  </motion.a>
+                    <span className="material-symbols-outlined text-base">calendar_add_on</span>
+                    احجزي استشارتك الآن
+                  </motion.div>
+                  <motion.h2
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
+                  >
+                    جاهزة لعلاج مشاكل شعرك؟
+                  </motion.h2>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                    className="text-slate-300 text-lg leading-relaxed"
+                  >
+                    ابدئي رحلتك لاستعادة كثافة شعرك وصحة فروة رأسك مع تقييم طبي دقيق وخيارات علاجية متقدمة مصممة خصيصًا لك.
+                  </motion.p>
+
+                  <motion.ul
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 }}
+                    className="space-y-3 text-slate-200 text-sm"
+                  >
+                    {[
+                      "استشارة مجانية مع طبيب متخصص",
+                      "خطة علاج مصممة لحالتك",
+                      "أحدث التقنيات الطبية في جدة",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-3 justify-center lg:justify-start">
+                        <span className="material-symbols-outlined text-[#c9a84c] shrink-0">check_circle</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </motion.ul>
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.7 }}
+                >
+                  <LeadForm id="booking-form" />
                 </motion.div>
               </div>
             </motion.div>
